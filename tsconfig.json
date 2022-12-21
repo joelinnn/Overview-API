@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "NodeNext",
+    "esModuleInterop": true,
+    "watch": true,
+    "lib": ["dom", "es2017"],
+    "paths": {
+      "*" : [
+        "./node_modules/*",
+        "./*"
+      ]
+    }
+  }
+}
