@@ -9,7 +9,6 @@ export const StyleSchema = new Schema({
   default_style: {type: Boolean, required: true},
   skus: {type: Object},
   photos: {type: Array<object>}
-
 })
 
-export const Styles = model<typeof StyleSchema>('Styles', StyleSchema)
+export const Style = model<typeof StyleSchema>('Style', StyleSchema)

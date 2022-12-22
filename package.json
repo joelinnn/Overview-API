@@ -7,6 +7,9 @@
     "start": "nodemon --watch './**/*.ts' --exec 'ts-node' SRV/app.ts",
     "ETLProducts": "NODE_OPTIONS='--max-old-space-size=8192' ts-node ETL/productParse.ts",
     "ETLFeatures": "NODE_OPTIONS='--max-old-space-size=8192' ts-node ETL/featureParse.ts",
+    "ETLStyles": "NODE_OPTIONS='--max-old-space-size=8192' ts-node ETL/styleParse.ts",
+    "ETLSkus": "NODE_OPTIONS='--max-old-space-size=8192' ts-node ETL/skuParse.ts",
+    "ETLPhotos": "NODE_OPTIONS='--max-old-space-size=8192' ts-node ETL/photoParse.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
