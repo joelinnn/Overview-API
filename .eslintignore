@@ -1,1 +1,4 @@
 .eslintrc.cjs
+productParse.ts
+styleParse.ts
+ETLPhotos.ts

@@ -6,10 +6,7 @@
     "watch": true,
     "lib": ["dom", "es2017"],
     "paths": {
-      "*" : [
-        "./node_modules/*",
-        "./*"
-      ]
-    }
-  }
+      "*": ["./node_modules/*", "./*", "./types/*.d.ts"]
+    },
+  },
 }
