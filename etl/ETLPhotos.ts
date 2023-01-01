@@ -17,29 +17,27 @@ const parsePhotos = () => {
     photoBatch.push(row);
 
     if (photoBatch.length === 100000) {
-      Photos.insertMany(photoBatch);
+      void Photos.insertMany(photoBatch);
       Log.info(photoBatch.length);
       photoBatch = [];
     }
   })
-  parseStream.on('end', async () => {
-    await Photos.insertMany(photoBatch)
-            .then(() => {
-              Style.aggregate([
-                {
-                  $lookup: {
-                    from: "photos",
-                    localField: "id",
-                    foreignField: "styleId",
-                    as: "photos"
-                  },
-                  $out: "styles"
-                }
-              ])
-            })
-            .catch((error) => {
-              if (error) Log.error(error)
-            })
+  parseStream.on('end', () => {
+    if (photoBatch.length > 0) {
+      void Photos.insertMany(photoBatch);
+    } else {
+      void Style.aggregate([
+        {
+          $lookup: {
+            from: "photos",
+            localField: "id",
+            foreignField: "styleId",
+            as: "photos"
+          },
+          $out: "styles"
+        }
+      ])
+    }
   })
 }
 
