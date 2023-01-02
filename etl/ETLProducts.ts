@@ -4,15 +4,16 @@ import Log from "../lib/Log";
 import { Product } from "../database/mongo/Products";
 import mongoose from "mongoose";
 
-const options = { header: true };
-const parsedStream = papa.parse(papa.NODE_STREAM_INPUT, options);
 
 const parseProducts = () => {
-  const productData:iProducts[] = [];
-  const readStream = fs.createReadStream("./ETL/CSV/product.csv");
+  const productData = [];
+  const readStream = fs.createReadStream("./etl/CSV/product.csv");
+  const options = { header: true };
+  const parsedStream = papa.parse(papa.NODE_STREAM_INPUT, options);
   readStream.pipe(parsedStream);
 
-  parsedStream.on("data", (row:iProducts) => {
+  parsedStream.on("data", (row) => {
+    Log.info(row);
     productData.push(row);
   });
 

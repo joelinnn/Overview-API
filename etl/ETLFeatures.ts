@@ -7,11 +7,11 @@ import { Product } from "../database/mongo/Products";
 const parseFeatures = () => {
   const options = { header: true };
   const parsedStream = papa.parse(papa.NODE_STREAM_INPUT, options);
-  const readStream = fs.createReadStream("./ETL/CSV/features.csv");
-  const featureBatch:batchItems[] = [];
+  const readStream = fs.createReadStream("./etl/CSV/features.csv");
+  const featureBatch = [];
 
   readStream.pipe(parsedStream);
-  parsedStream.on("data", (row: iFeature) => {
+  parsedStream.on("data", (row) => {
     const feature = {
       feature: row.feature,
       value: row.value,
@@ -26,6 +26,7 @@ const parseFeatures = () => {
   });
   parsedStream.on("end", () => {
      void Product.bulkWrite(featureBatch);
+     Log.info('Done')
   });
 };
 

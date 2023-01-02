@@ -4,7 +4,6 @@ import Log from "../lib/Log";
 import mongoose  from "mongoose";
 import NodeCache from "node-cache";
 import { Product } from "../database/mongo/Products";
-import { Style } from "../database/mongo/Styles";
 
 dotenv.config();
 const app = express();
@@ -42,8 +41,9 @@ const startServer = () => {
 
   const verifyCache = (req, res, next) => {
     let productID = req.query.id;
+
     if (req.url.includes("styles")) {
-      productID = "style" + productID;
+      productID = "style" + req.query.id;
     }
 
     try {
@@ -63,7 +63,7 @@ const startServer = () => {
     const page = (Number(req.query.page) - 1) * count;
 
     Product.find().skip(page).limit(count)
-      .select({ _id: 0, features: 0 })
+      .select({ _id: 0, features: 0, product_id: 0, results: 0 })
       .lean()
       .exec((error, products) => {
         if (error) {
@@ -78,30 +78,30 @@ const startServer = () => {
     const productID = Number(req.query.id);
 
     Product.find({ id: productID }, {}, { hint: "id_1" })
-      .select({ _id: 0 })
+      .select({ _id: 0, product_id: 0, results: 0 })
       .lean()
       .exec((error, product) => {
         if (error) {
           res.send(error);
         } else {
-          myCache.set(productID, product);
-          res.send(product);
+          myCache.set(productID, product[0]);
+          res.send(product[0]);
         }
       })
   });
 
   app.get("/products/:product_id/styles", verifyCache, (req, res) => {
-    const productID = req.query.id;
+    const productID = Number(req.query.id);
 
-    Style.find({ product_id: productID }, {}, { hint: "product_id_1" })
-      .select({ _id: 0 })
+    Product.find({ id: productID }, {}, { hint: "id_1" })
+      .select({ product_id: 1, results: 1, _id: 0 })
       .lean()
       .exec((error, styles) => {
         if (error) {
           res.send(error);
         } else {
-          myCache.set(`style${productID.toString()}`, styles);
-          res.send(styles);
+          myCache.set("style" + productID, styles[0]);
+          res.send(styles[0]);
         }
       })
   });

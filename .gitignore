@@ -1,6 +1,4 @@
 node_modules
 .env
 .DS_Store
-ETL/CSV/
-ETL/productParse.ts
-ETL/styleParse.ts
+etl/csv/

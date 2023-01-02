@@ -4,9 +4,7 @@
   "description": "Overview API for FEC",
   "main": "server/app.ts",
   "scripts": {
-    "start": "nodemon --watch './**/*.ts' --exec 'ts-node' server/app.ts",
-    "ETL": "ts-node ETL/ETLPhotos.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --watch './**/*.ts' --exec 'ts-node' server/app.ts"
   },
   "repository": {
     "type": "git",

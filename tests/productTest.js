@@ -14,12 +14,12 @@ export const options = {
       timeUnit: "1s",
       preAllocatedVUs: 10,
       maxVUs: 2000,
-      rate: 1300,
+      rate: 1600,
     },
   },
   thresholds : {
     http_req_failed: ["rate<0.01"],
-    http_req_duration: ["avg<50"],
+    http_req_duration: ["avg<5"],
   }
 }
 export default function () {
