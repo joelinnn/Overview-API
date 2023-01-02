@@ -24,7 +24,7 @@ export const options = {
 }
 export default function () {
   const start = Date.now();
-  let res = http.get('http://localhost:3000/products/:product_id?id=999998');
+  let res = http.get('http://localhost:3001/products/:product_id?id=999998');
   const end = Date.now() - start;
   LatencyMetric.add(end);
 
