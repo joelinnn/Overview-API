@@ -4,9 +4,9 @@
   "description": "Overview API for FEC",
   "main": "server/app.ts",
   "scripts": {
-    "start": "nodemon server/app.ts",
-    "build": "tsc -p ."
-
+    "start": "node build/server/app.js",
+    "build": "tsc",
+    "dev": "nodemon server/app.ts"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/RFE2210-RedPanda/Overview-API#readme",
   "dependencies": {
-    "@types/mongoose": "^5.11.97",
     "@types/papaparse": "^5.3.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

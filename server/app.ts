@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import Log from "../lib/Log";
 import mongoose  from "mongoose";
 import NodeCache from "node-cache";
+import url from '../database/db.config';
 import { Product } from "../database/mongo/Products";
+
 
 dotenv.config();
 const app = express();
@@ -13,7 +15,7 @@ const myCache = new NodeCache();
 
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(process.env.MONGO_URL, { dbName: "Overview-DB" })
+  .connect(url)
   .then(() => {
     Log.info("Connected to Overview-DB");
     startServer();
@@ -116,7 +118,7 @@ const startServer = () => {
 
   // ------------------- MAKE SURE OUR SERVERS ON -------------------------- //
 
-  app.listen(process.env.PORT, () => {
-    Log.info("Overview API running on port " + process.env.PORT);
+  app.listen(process.env.NODE_DOCKER_PORT, () => {
+    Log.info("Overview API running on port " + process.env.NODE_DOCKER_PORT);
   });
 };

@@ -3,8 +3,8 @@
     "target": "esnext",
     "module": "NodeNext",
     "outDir": "./build",
+    "sourceMap": true,
     "esModuleInterop": true,
-    "watch": true,
     "lib": ["dom", "es2017"],
     "paths": {
       "*": ["./node_modules/*", "./*", "./types/*.d.ts"]
