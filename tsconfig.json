@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "NodeNext",
+    "outDir": "./build",
     "esModuleInterop": true,
     "watch": true,
     "lib": ["dom", "es2017"],

@@ -43,7 +43,7 @@ const startServer = () => {
     let productID = req.query.id;
 
     if (req.url.includes("styles")) {
-      productID = "style" + req.query.id;
+      productID = `style${req.query.id}`
     }
 
     try {
@@ -100,7 +100,7 @@ const startServer = () => {
         if (error) {
           res.send(error);
         } else {
-          myCache.set("style" + productID, styles[0]);
+          myCache.set(`style${productID}`, styles[0]);
           res.send(styles[0]);
         }
       })

@@ -10,16 +10,16 @@ export const options = {
   scenarios: {
     myScenario1: {
       executor: "constant-arrival-rate",
-      duration: "120s",
+      duration: "60s",
       timeUnit: "1s",
       preAllocatedVUs: 10,
-      maxVUs: 2000,
-      rate: 1600,
+      maxVUs: 5000,
+      rate: 1900,
     },
   },
   thresholds : {
-    http_req_failed: ["rate<0.01"],
-    http_req_duration: ["avg<5"],
+    http_req_failed: ["rate<0.001"],
+    http_req_duration: ["avg<1"],
   }
 }
 export default function () {
