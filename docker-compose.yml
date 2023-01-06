@@ -1,23 +1,26 @@
 services:
   mongodb:
     image: mongo
+    container_name: overview-database
     restart: unless-stopped
     env_file: ./.env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     ports:
-      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
+      - $MONGODB_DOCKER_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - db:/data/db
   app:
+    image: joelinnn/overview-api:final
+    container_name: overview-server
+    build: ./
     depends_on:
       - mongodb
-    build: ./
     restart: unless-stopped
     env_file: ./.env
     ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+      - $NODE_DOCKER_PORT:$NODE_DOCKER_PORT
     environment:
       - DB_HOST=mongodb
       - DB_USER=$MONGODB_USER
