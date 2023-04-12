@@ -6,4 +6,7 @@ An API service for the Product Overview widget of our [front-end shopping catalo
 
 - Clone the repository
 - npm install
+- npm run dev
 - The API server is now running on http://localhost:3000
+
+This repository can also be downloaded from dockerhub
